@@ -1,0 +1,25 @@
+# Credentials / local config
+.env
+*.cfg
+*.pem
+aws_credentials*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Airflow runtime files
+logs/
+airflow.db
+unittests.cfg
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

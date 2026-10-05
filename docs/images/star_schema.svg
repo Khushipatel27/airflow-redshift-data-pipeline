@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="900" height="560" rx="14" fill="#ffffff"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="600" fill="#1f2937">Redshift Star Schema</text>
+
+  <!-- links -->
+  <g stroke="#9ca3af" stroke-width="2">
+    <line x1="450" y1="290" x2="180" y2="150"/>
+    <line x1="450" y1="290" x2="720" y2="150"/>
+    <line x1="450" y1="290" x2="180" y2="440"/>
+    <line x1="450" y1="290" x2="720" y2="440"/>
+  </g>
+
+  <!-- fact -->
+  <g>
+    <rect x="335" y="175" width="230" height="230" rx="10" fill="#fde8e0" stroke="#f98866" stroke-width="2.5"/>
+    <rect x="335" y="175" width="230" height="36" rx="10" fill="#f98866"/>
+    <rect x="335" y="195" width="230" height="16" fill="#f98866"/>
+    <text x="450" y="199" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">songplays (fact)</text>
+    <g font-size="13" fill="#5a2210">
+      <text x="350" y="234">🔑 playid  (md5)</text>
+      <text x="350" y="256">start_time → time</text>
+      <text x="350" y="278">userid → users</text>
+      <text x="350" y="300">songid → songs</text>
+      <text x="350" y="322">artistid → artists</text>
+      <text x="350" y="344">level, sessionid</text>
+      <text x="350" y="366">location, user_agent</text>
+    </g>
+  </g>
+
+  <!-- dims -->
+  <g font-size="13" fill="#1f4b3c">
+    <rect x="70" y="70" width="220" height="150" rx="10" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="180" y="96" text-anchor="middle" font-size="15" font-weight="700">users</text>
+    <text x="85" y="122">🔑 userid</text>
+    <text x="85" y="144">first_name, last_name</text>
+    <text x="85" y="166">gender</text>
+    <text x="85" y="188">level</text>
+
+    <rect x="610" y="70" width="220" height="150" rx="10" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="720" y="96" text-anchor="middle" font-size="15" font-weight="700">songs</text>
+    <text x="625" y="122">🔑 songid</text>
+    <text x="625" y="144">title</text>
+    <text x="625" y="166">artistid</text>
+    <text x="625" y="188">year, duration</text>
+
+    <rect x="70" y="360" width="220" height="160" rx="10" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="180" y="386" text-anchor="middle" font-size="15" font-weight="700">time</text>
+    <text x="85" y="412">🔑 start_time</text>
+    <text x="85" y="434">hour, day, week</text>
+    <text x="85" y="456">month, year</text>
+    <text x="85" y="478">dayofweek</text>
+
+    <rect x="610" y="360" width="220" height="160" rx="10" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="720" y="386" text-anchor="middle" font-size="15" font-weight="700">artists</text>
+    <text x="625" y="412">🔑 artistid</text>
+    <text x="625" y="434">name</text>
+    <text x="625" y="456">location</text>
+    <text x="625" y="478">lattitude, longitude</text>
+  </g>
+</svg>

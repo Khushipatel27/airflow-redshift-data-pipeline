@@ -1,0 +1,20 @@
+# Local Airflow 1.10 environment for running this pipeline.
+# Usage: copy .env.example to .env, fill in S3_BUCKET, then `docker compose up -d`
+# UI: http://localhost:8080
+services:
+  airflow:
+    image: puckel/docker-airflow:1.10.9
+    container_name: airflow
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - LOAD_EX=n
+      - EXECUTOR=Sequential
+      - AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT=False
+      - S3_BUCKET=${S3_BUCKET}
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      - ./plugins:/usr/local/airflow/plugins
+      - ./requirements.txt:/requirements.txt
+    command: webserver

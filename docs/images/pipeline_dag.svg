@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6575"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="470" rx="14" fill="#ffffff"/>
+  <text x="550" y="38" text-anchor="middle" font-size="22" font-weight="600" fill="#1f2937">Airflow DAG: S3 → Redshift (hourly)</text>
+
+  <!-- S3 source -->
+  <g>
+    <rect x="20" y="175" width="120" height="110" rx="10" fill="#fff4e5" stroke="#e8890c" stroke-width="2"/>
+    <text x="80" y="210" text-anchor="middle" font-size="16" font-weight="600" fill="#9a5a00">Amazon S3</text>
+    <text x="80" y="234" text-anchor="middle" font-size="13" fill="#5b4a2e">log-data/</text>
+    <text x="80" y="254" text-anchor="middle" font-size="13" fill="#5b4a2e">song_data/</text>
+    <text x="80" y="274" text-anchor="middle" font-size="11" fill="#5b4a2e">JSON</text>
+  </g>
+
+  <!-- Begin -->
+  <rect x="170" y="210" width="110" height="40" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="225" y="235" text-anchor="middle" font-size="13" fill="#374151">Begin_execution</text>
+
+  <!-- Create tables -->
+  <rect x="305" y="200" width="130" height="60" rx="8" fill="#e6f4ea" stroke="#358140" stroke-width="2"/>
+  <text x="370" y="226" text-anchor="middle" font-size="13" font-weight="600" fill="#1e4d27">create_tables</text>
+  <text x="370" y="245" text-anchor="middle" font-size="11" fill="#1e4d27">CreateTableOperator</text>
+
+  <!-- Stage -->
+  <rect x="465" y="120" width="140" height="60" rx="8" fill="#e6f4ea" stroke="#358140" stroke-width="2"/>
+  <text x="535" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="#1e4d27">Stage_events</text>
+  <text x="535" y="165" text-anchor="middle" font-size="11" fill="#1e4d27">StageToRedshiftOperator</text>
+  <rect x="465" y="280" width="140" height="60" rx="8" fill="#e6f4ea" stroke="#358140" stroke-width="2"/>
+  <text x="535" y="306" text-anchor="middle" font-size="13" font-weight="600" fill="#1e4d27">Stage_songs</text>
+  <text x="535" y="325" text-anchor="middle" font-size="11" fill="#1e4d27">StageToRedshiftOperator</text>
+
+  <!-- Fact -->
+  <rect x="635" y="200" width="130" height="60" rx="8" fill="#fde8e0" stroke="#f98866" stroke-width="2"/>
+  <text x="700" y="226" text-anchor="middle" font-size="13" font-weight="600" fill="#8a3418">Load_songplays</text>
+  <text x="700" y="245" text-anchor="middle" font-size="11" fill="#8a3418">LoadFactOperator</text>
+
+  <!-- Dimensions -->
+  <g font-size="12" fill="#1f4b3c" text-anchor="middle">
+    <rect x="795" y="70"  width="120" height="44" rx="8" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="855" y="97">Load_user_dim</text>
+    <rect x="795" y="150" width="120" height="44" rx="8" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="855" y="177">Load_song_dim</text>
+    <rect x="795" y="266" width="120" height="44" rx="8" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="855" y="293">Load_artist_dim</text>
+    <rect x="795" y="346" width="120" height="44" rx="8" fill="#e3f1ec" stroke="#80bd9e" stroke-width="2"/>
+    <text x="855" y="373">Load_time_dim</text>
+  </g>
+  <text x="855" y="235" text-anchor="middle" font-size="11" fill="#6b7280">SubDag ×4</text>
+  <text x="855" y="250" text-anchor="middle" font-size="11" fill="#6b7280">LoadDimensionOperator</text>
+
+  <!-- Quality -->
+  <rect x="945" y="200" width="130" height="60" rx="8" fill="#eef8e6" stroke="#89da59" stroke-width="2"/>
+  <text x="1010" y="226" text-anchor="middle" font-size="13" font-weight="600" fill="#2f5a14">Data quality</text>
+  <text x="1010" y="245" text-anchor="middle" font-size="11" fill="#2f5a14">DataQualityOperator</text>
+  <rect x="955" y="300" width="110" height="40" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="1010" y="325" text-anchor="middle" font-size="13" fill="#374151">Stop_execution</text>
+
+  <!-- Edges -->
+  <g stroke="#5b6575" stroke-width="1.8" fill="none" marker-end="url(#arrow)">
+    <path d="M140 230 L168 230" stroke-dasharray="5 4"/>
+    <path d="M280 230 L303 230"/>
+    <path d="M435 222 L463 155"/>
+    <path d="M435 238 L463 305"/>
+    <path d="M605 150 L633 220"/>
+    <path d="M605 310 L633 240"/>
+    <path d="M765 220 L793 92"/>
+    <path d="M765 225 L793 172"/>
+    <path d="M765 235 L793 288"/>
+    <path d="M765 240 L793 368"/>
+    <path d="M915 92  L943 218"/>
+    <path d="M915 172 L943 224"/>
+    <path d="M915 288 L943 236"/>
+    <path d="M915 368 L943 242"/>
+    <path d="M1010 260 L1010 298"/>
+  </g>
+
+  <text x="550" y="440" text-anchor="middle" font-size="13" fill="#6b7280">Staging (COPY from S3) → fact load → 4 dimension loads in parallel → row-count quality check</text>
+</svg>
